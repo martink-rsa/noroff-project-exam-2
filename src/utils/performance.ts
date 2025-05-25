@@ -12,7 +12,7 @@ export function measurePageLoad() {
           response: perfData.responseEnd - perfData.responseStart,
           dom: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
           load: perfData.loadEventEnd - perfData.loadEventStart,
-          total: perfData.loadEventEnd - perfData.navigationStart
+          total: perfData.loadEventEnd - (perfData as any).navigationStart
         };
 
         console.log('Page Load Metrics:', metrics);
@@ -24,13 +24,13 @@ export function measurePageLoad() {
 
 export function measureComponentRender(componentName: string) {
   return function<T extends any[], R>(
-    target: any,
-    propertyName: string,
+    _target: any,
+    _propertyName: string,
     descriptor: TypedPropertyDescriptor<(...args: T) => R>
   ) {
     const method = descriptor.value!;
     
-    descriptor.value = function(...args: T) {
+    descriptor.value = function(this: any, ...args: T) {
       const start = performance.now();
       const result = method.apply(this, args);
       const end = performance.now();
@@ -47,7 +47,7 @@ export function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
+  let timeout: ReturnType<typeof setTimeout>;
   
   return function executedFunction(...args: Parameters<T>) {
     const later = () => {
@@ -66,7 +66,7 @@ export function throttle<T extends (...args: any[]) => any>(
 ): (...args: Parameters<T>) => void {
   let inThrottle: boolean;
   
-  return function executedFunction(...args: Parameters<T>) {
+  return function executedFunction(this: any, ...args: Parameters<T>) {
     if (!inThrottle) {
       func.apply(this, args);
       inThrottle = true;

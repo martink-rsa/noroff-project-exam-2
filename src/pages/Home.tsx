@@ -29,11 +29,11 @@ export default function Home() {
           <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-white/95 max-w-3xl mx-auto drop-shadow-md">
             Discover unique accommodations around the world with Holidaze
           </p>
-          
+
           <div className="max-w-2xl mx-auto mb-6 sm:mb-8">
             <SearchBar />
           </div>
-          
+
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
             <Link
               to="/venues"
@@ -44,7 +44,7 @@ export default function Home() {
             </Link>
             <Link
               to="/register"
-              className="inline-flex items-center justify-center gap-2 border-2 border-neutral-900/80 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold hover:bg-white/20 backdrop-blur-sm transition-all duration-200 shadow-soft"
+              className="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-6 sm:px-8 py-3 rounded-xl font-semibold hover:bg-white/20 backdrop-blur-sm transition-all duration-200 shadow-soft"
             >
               <Star size={20} />
               Become a Host
@@ -67,7 +67,7 @@ export default function Home() {
 
           {loading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              {[1, 2, 3, 4, 5, 6].map(i => (
+              {[1, 2, 3, 4, 5, 6].map((i) => (
                 <LoadingCard key={i} />
               ))}
             </div>
@@ -85,7 +85,7 @@ export default function Home() {
                   <VenueCard key={venue.id} venue={venue} />
                 ))}
               </div>
-              
+
               <div className="text-center mt-8 sm:mt-12">
                 <Link
                   to="/venues"
@@ -109,33 +109,39 @@ export default function Home() {
               Why Choose Holidaze?
             </h2>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50 hover:shadow-soft-lg transition-all duration-300">
               <div className="bg-gradient-to-br from-primary-400 to-primary-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Building2 size={28} className="text-neutral-900" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-neutral-900">Unique Properties</h3>
+              <h3 className="text-xl font-semibold mb-2 text-neutral-900">
+                Unique Properties
+              </h3>
               <p className="text-neutral-600">
                 Stay in handpicked accommodations that offer something special
               </p>
             </div>
-            
+
             <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50 hover:shadow-soft-lg transition-all duration-300">
               <div className="bg-gradient-to-br from-secondary-400 to-secondary-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Star size={28} className="text-neutral-900" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-neutral-900">Quality Guaranteed</h3>
+              <h3 className="text-xl font-semibold mb-2 text-neutral-900">
+                Quality Guaranteed
+              </h3>
               <p className="text-neutral-600">
                 All venues are verified and rated by our community
               </p>
             </div>
-            
+
             <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50 hover:shadow-soft-lg transition-all duration-300">
               <div className="bg-gradient-to-br from-accent-400 to-accent-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Calendar size={28} className="text-neutral-900" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-neutral-900">Easy Booking</h3>
+              <h3 className="text-xl font-semibold mb-2 text-neutral-900">
+                Easy Booking
+              </h3>
               <p className="text-neutral-600">
                 Simple and secure booking process with instant confirmation
               </p>

@@ -10,7 +10,6 @@ import {
   TrendingUp,
   Users,
   Mail,
-  Star,
 } from 'lucide-react';
 
 export default function VenueBookings() {

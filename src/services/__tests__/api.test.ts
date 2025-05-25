@@ -3,7 +3,7 @@ import { apiService } from '../index';
 import { ApiError } from '../../types/api';
 
 // Mock fetch globally
-global.fetch = vi.fn();
+(globalThis as any).fetch = vi.fn();
 
 describe('API Service', () => {
   beforeEach(() => {
@@ -330,7 +330,7 @@ describe('API Service', () => {
         json: async () => mockResponse
       });
 
-      const result = await apiService.getUserBookings('test_user');
+      const result = await apiService.getProfileBookings('test_user');
 
       expect(fetch).toHaveBeenCalledWith(
         'https://v2.api.noroff.dev/holidaze/profiles/test_user/bookings?_venue=true',
@@ -374,7 +374,7 @@ describe('API Service', () => {
       } catch (error) {
         expect(error).toBeInstanceOf(ApiError);
         expect((error as ApiError).message).toBe('Validation failed, Invalid email format');
-        expect((error as ApiError).status).toBe(400);
+        expect((error as ApiError).statusCode).toBe(400);
       }
     });
   });

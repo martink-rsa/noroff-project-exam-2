@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, renderHook, act, waitFor } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { AuthProvider, useAuth } from '../AuthContext';
 import { apiService } from '../../services';
 
@@ -46,10 +46,7 @@ describe('AuthContext', () => {
     const { result } = renderHook(() => useAuth(), { wrapper });
 
     await act(async () => {
-      await result.current.login({
-        email: 'test@stud.noroff.no',
-        password: 'password123'
-      });
+      return result.current.login('test@stud.noroff.no', 'password123');
     });
 
     expect(apiService.login).toHaveBeenCalledWith({
@@ -69,10 +66,7 @@ describe('AuthContext', () => {
     const { result } = renderHook(() => useAuth(), { wrapper });
 
     await expect(act(async () => {
-      await result.current.login({
-        email: 'invalid@stud.noroff.no',
-        password: 'wrongpassword'
-      });
+      return result.current.login('invalid@stud.noroff.no', 'wrongpassword');
     })).rejects.toThrow('Invalid credentials');
 
     expect(result.current.user).toBeNull();
@@ -178,7 +172,7 @@ describe('AuthContext', () => {
     });
 
     await act(async () => {
-      await result.current.updateProfile('test_user', {
+      return result.current.updateProfile({
         avatar: { url: 'https://example.com/avatar.jpg', alt: 'New avatar' }
       });
     });

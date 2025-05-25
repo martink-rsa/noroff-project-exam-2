@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { VenueCard } from '../../VenueCard';
-import { Venue } from '../../../types/api';
+import VenueCard from '../VenueCard';
+import type { Venue } from '../../types';
 
 const mockVenue: Venue = {
   id: '1',
@@ -35,7 +35,8 @@ const mockVenue: Venue = {
     name: 'john_doe',
     email: 'john@stud.noroff.no',
     avatar: { url: '', alt: '' },
-    banner: { url: '', alt: '' }
+    banner: { url: '', alt: '' },
+    venueManager: true
   },
   bookings: [],
   _count: { bookings: 3 }

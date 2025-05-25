@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { BrowserRouter } from 'react-router-dom';
 import BookingCard from './BookingCard';
-import type { Booking } from '../types';
+import type { Booking } from '../../types';
 
 // Mock booking data for stories
 const mockBooking: Booking = {

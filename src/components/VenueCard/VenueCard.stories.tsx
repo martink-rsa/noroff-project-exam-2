@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
-import { VenueCard } from './VenueCard';
-import type { Venue } from '../types';
+import VenueCard from './VenueCard';
+import type { Venue } from '../../types';
 
 // Mock venue data for stories
 const mockVenue: Venue = {

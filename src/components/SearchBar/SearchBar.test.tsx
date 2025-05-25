@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { SearchBar } from '../../SearchBar';
+import SearchBar from '../SearchBar';
 
 describe('SearchBar', () => {
   it('should render with placeholder text', () => {
@@ -85,11 +85,11 @@ describe('SearchBar', () => {
     expect(mockOnSearch).not.toHaveBeenCalled();
   });
 
-  it('should display default value when provided', () => {
-    render(<SearchBar onSearch={vi.fn()} defaultValue="initial search" />);
+  it('should start with empty input by default', () => {
+    render(<SearchBar onSearch={vi.fn()} />);
     
-    const input = screen.getByDisplayValue('initial search');
-    expect(input).toBeInTheDocument();
+    const input = screen.getByPlaceholderText('Search venues...');
+    expect(input).toHaveValue('');
   });
 
   it('should have proper accessibility attributes', () => {

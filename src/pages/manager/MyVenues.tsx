@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { useVenues } from '../../hooks/useVenues';
 import { LoadingCard, ErrorMessage } from '../../components/ui';
-import { Plus, Eye, Edit3, Trash2, Building2, Users, MapPin, Star } from 'lucide-react';
+import { Plus, Eye, Edit3, Trash2, Building2, Users, Star } from 'lucide-react';
 import type { Venue } from '../../types/api';
 
 export default function MyVenues() {
@@ -142,7 +142,7 @@ export default function MyVenues() {
 
                   <div className="flex items-center justify-between mb-6">
                     <div className="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-xs font-medium">
-                      {(venue._count as { bookings?: number })?.bookings || 0} booking(s)
+                      {venue._count?.bookings || 0} booking(s)
                     </div>
                     <div className="flex items-center gap-1 text-sm text-neutral-500">
                       <Star size={14} className="text-yellow-500" />

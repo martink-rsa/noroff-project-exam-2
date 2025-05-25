@@ -20,7 +20,10 @@ interface UseVenueSearchReturn {
   sortOrder: 'asc' | 'desc';
   search: (searchQuery: string) => Promise<void>;
   setPage: (page: number) => void;
+  goToPage: (page: number) => Promise<void>;
   setSort: (sortBy: string, sortOrder: 'asc' | 'desc') => void;
+  setSorting: (sortBy: string, sortOrder: 'asc' | 'desc') => Promise<void>;
+  clearSearch: () => void;
   refetch: () => Promise<void>;
 }
 
@@ -79,10 +82,29 @@ export function useVenueSearch({
     fetchVenues(query, page);
   };
 
+  const goToPage = async (page: number) => {
+    setCurrentPage(page);
+    await fetchVenues(query, page);
+  };
+
   const setSort = (newSortBy: string, newSortOrder: 'asc' | 'desc') => {
     setSortBy(newSortBy);
     setSortOrder(newSortOrder);
     setCurrentPage(1);
+  };
+
+  const setSorting = async (newSortBy: string, newSortOrder: 'asc' | 'desc') => {
+    setSortBy(newSortBy);
+    setSortOrder(newSortOrder);
+    setCurrentPage(1);
+    await fetchVenues(query, 1);
+  };
+
+  const clearSearch = () => {
+    setQuery('');
+    setVenues([]);
+    setCurrentPage(1);
+    setError(null);
   };
 
   const refetch = () => fetchVenues(query, currentPage);
@@ -103,7 +125,10 @@ export function useVenueSearch({
     sortOrder,
     search,
     setPage,
+    goToPage,
     setSort,
+    setSorting,
+    clearSearch,
     refetch,
   };
 }

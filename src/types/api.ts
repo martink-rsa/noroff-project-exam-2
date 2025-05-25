@@ -47,6 +47,9 @@ export interface Venue {
   };
   owner?: Profile;
   bookings?: Booking[];
+  _count?: {
+    bookings: number;
+  };
 }
 
 export interface Booking {
