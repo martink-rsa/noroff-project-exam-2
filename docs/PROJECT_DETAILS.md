@@ -428,7 +428,6 @@ interface Booking {
 ```typescript
 import { z } from 'zod';
 
-// Registration schema
 const registerSchema = z.object({
   name: z
     .string()
@@ -464,13 +463,11 @@ const registerSchema = z.object({
     .optional(),
 });
 
-// Login schema
 const loginSchema = z.object({
   email: z.string().email('Invalid email format'),
   password: z.string().min(1, 'Password is required'),
 });
 
-// Venue creation schema
 const venueSchema = z.object({
   name: z.string().min(1, 'Venue name is required'),
   description: z.string().min(1, 'Description is required'),
@@ -505,7 +502,6 @@ const venueSchema = z.object({
     .optional(),
 });
 
-// Booking schema
 const bookingSchema = z
   .object({
     dateFrom: z.string().datetime('Invalid date format'),
