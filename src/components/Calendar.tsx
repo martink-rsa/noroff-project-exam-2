@@ -122,12 +122,12 @@ export function Calendar({
               className={`
                 p-2 text-sm rounded-xl transition-colors duration-200
                 ${!isSameMonth(day, currentMonth) ? 'text-neutral-300' : ''}
-                ${today ? 'ring-2 ring-primary-400' : ''}
-                ${selected ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-neutral-900' : ''}
-                ${inRange && !selected ? 'bg-primary-100 text-primary-800' : ''}
-                ${booked ? 'bg-error-100 text-error-600 cursor-not-allowed' : ''}
+                ${today ? 'ring-2 ring-blue-500 ring-offset-1' : ''}
+                ${selected ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold' : ''}
+                ${inRange && !selected ? 'bg-blue-100 text-blue-800' : ''}
+                ${booked ? 'bg-red-100 text-red-600 cursor-not-allowed' : ''}
                 ${disabled && !booked ? 'text-neutral-300 cursor-not-allowed' : ''}
-                ${!disabled && !selected && !inRange && !booked ? 'hover:bg-primary-50 text-neutral-700' : ''}
+                ${!disabled && !selected && !inRange && !booked ? 'hover:bg-blue-50 text-neutral-700' : ''}
               `}
             >
               {format(day, 'd')}
@@ -139,15 +139,15 @@ export function Calendar({
       {/* Legend */}
       <div className="mt-6 flex flex-wrap gap-4 text-xs text-neutral-600">
         <div className="flex items-center">
-          <div className="w-3 h-3 bg-gradient-to-r from-primary-500 to-secondary-500 rounded mr-2"></div>
+          <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded mr-2"></div>
           Selected
         </div>
         <div className="flex items-center">
-          <div className="w-3 h-3 bg-primary-100 rounded mr-2"></div>
+          <div className="w-3 h-3 bg-blue-100 rounded mr-2"></div>
           Range
         </div>
         <div className="flex items-center">
-          <div className="w-3 h-3 bg-error-100 rounded mr-2"></div>
+          <div className="w-3 h-3 bg-red-100 rounded mr-2"></div>
           Booked
         </div>
         <div className="flex items-center">

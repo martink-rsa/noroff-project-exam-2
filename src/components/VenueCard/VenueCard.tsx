@@ -36,7 +36,7 @@ export default function VenueCard({ venue }: VenueCardProps) {
       </div>
       
       <div className="p-5">
-        <h3 id={`venue-${venue.id}-title`} className="text-lg font-bold text-neutral-900 mb-2 line-clamp-1 group-hover:text-primary-700 transition-colors duration-200">
+        <h3 id={`venue-${venue.id}-title`} className="text-lg font-bold font-display text-neutral-900 mb-2 line-clamp-1 group-hover:text-primary-700 transition-colors duration-200">
           {venue.name}
         </h3>
         

@@ -58,7 +58,7 @@ export default function BookingCard({ booking, onDelete }: BookingCardProps) {
         <div className="md:w-2/3 p-6">
           <div className="flex justify-between items-start mb-5">
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-neutral-900 mb-2">
+              <h3 className="text-xl font-bold font-display text-neutral-900 mb-2">
                 {booking.venue ? (
                   <Link 
                     to={`/venues/${booking.venue.id}`}

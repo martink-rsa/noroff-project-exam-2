@@ -23,7 +23,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/20"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-white drop-shadow-lg">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-4 sm:mb-6 text-white drop-shadow-lg">
             Find Your Perfect Getaway
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-white/95 max-w-3xl mx-auto drop-shadow-md">
@@ -57,7 +57,7 @@ export default function Home() {
       <section className="py-12 sm:py-16 bg-gradient-to-b from-primary-50/50 to-secondary-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-3 sm:mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold font-display text-neutral-900 mb-3 sm:mb-4">
               Featured Venues
             </h2>
             <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto">
@@ -105,7 +105,7 @@ export default function Home() {
       <section className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold font-display text-neutral-900 mb-4">
               Why Choose Holidaze?
             </h2>
           </div>

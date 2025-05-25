@@ -90,7 +90,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Raleway', 'system-ui', 'sans-serif'],
+        display: ['Manrope', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         soft: '0 2px 15px 0 rgba(0, 0, 0, 0.05)',

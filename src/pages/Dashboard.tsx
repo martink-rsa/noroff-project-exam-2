@@ -18,7 +18,7 @@ export default function Dashboard() {
       <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <div className="mb-6 sm:mb-8">
-            <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-bold font-display text-neutral-900 mb-2">
               Welcome back, {user.name}!
             </h1>
             <p className="text-neutral-600">Manage your venues and bookings</p>
@@ -85,7 +85,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         <div className="mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold font-display text-neutral-900 mb-2">
             Welcome back, {user?.name}!
           </h1>
           <p className="text-neutral-600">Plan your next adventure</p>
@@ -97,7 +97,7 @@ export default function Dashboard() {
             {/* Next Booking */}
             {nextBooking && (
               <div className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-2xl shadow-soft border border-white/50">
-                <h2 className="text-lg sm:text-xl font-semibold text-neutral-900 mb-4 flex items-center gap-2">
+                <h2 className="text-lg sm:text-xl font-semibold font-display text-neutral-900 mb-4 flex items-center gap-2">
                   <Calendar size={20} className="text-primary-500" />
                   Next Trip
                 </h2>
@@ -150,7 +150,7 @@ export default function Dashboard() {
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50">
               <div className="p-6 border-b border-neutral-200">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-xl font-semibold text-neutral-900">Recent Bookings</h2>
+                  <h2 className="text-xl font-semibold font-display text-neutral-900">Recent Bookings</h2>
                   <Link
                     to="/my-bookings"
                     className="inline-flex items-center gap-1 text-primary-600 hover:text-primary-700 text-sm font-medium transition-colors"
@@ -213,7 +213,7 @@ export default function Dashboard() {
           <div className="space-y-6">
             {/* Quick Actions */}
             <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-soft border border-white/50">
-              <h2 className="text-lg font-semibold text-neutral-900 mb-4">Quick Actions</h2>
+              <h2 className="text-lg font-semibold font-display text-neutral-900 mb-4">Quick Actions</h2>
               <div className="space-y-3">
                 <Link
                   to="/venues"

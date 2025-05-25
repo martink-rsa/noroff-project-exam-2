@@ -50,7 +50,7 @@ export function LoginForm() {
         <div className="mx-auto w-16 h-16 bg-gradient-to-br from-primary-400 to-secondary-400 rounded-2xl flex items-center justify-center mb-4">
           <LogIn size={28} className="text-neutral-900" />
         </div>
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-primary-700 to-secondary-700 bg-clip-text text-transparent">
+        <h2 className="text-3xl font-bold font-display bg-gradient-to-r from-primary-700 to-secondary-700 bg-clip-text text-transparent">
           Welcome back
         </h2>
         <p className="mt-3 text-neutral-600">
