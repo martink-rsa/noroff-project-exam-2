@@ -5,14 +5,14 @@ interface LoadingSpinnerProps {
 
 export function LoadingSpinner({ size = 'medium', className = '' }: LoadingSpinnerProps) {
   const sizeClasses = {
-    small: 'h-4 w-4',
-    medium: 'h-8 w-8',
-    large: 'h-12 w-12'
+    small: 'h-4 w-4 border-2',
+    medium: 'h-8 w-8 border-2',
+    large: 'h-12 w-12 border-3'
   };
 
   return (
     <div 
-      className={`animate-spin rounded-full border-2 border-gray-300 border-t-blue-600 ${sizeClasses[size]} ${className}`}
+      className={`animate-spin rounded-full border-neutral-200 border-t-primary-500 ${sizeClasses[size]} ${className}`}
       role="status"
       aria-label="Loading content"
     >
@@ -23,10 +23,10 @@ export function LoadingSpinner({ size = 'medium', className = '' }: LoadingSpinn
 
 export function LoadingPage({ message = 'Loading...' }: { message?: string }) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="text-center">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-secondary-50">
+      <div className="text-center p-8 bg-white/60 backdrop-blur-sm rounded-2xl shadow-soft-lg border border-white/50">
         <LoadingSpinner size="large" className="mx-auto mb-4" />
-        <p className="text-gray-600">{message}</p>
+        <p className="text-neutral-700 font-medium">{message}</p>
       </div>
     </div>
   );
@@ -34,11 +34,11 @@ export function LoadingPage({ message = 'Loading...' }: { message?: string }) {
 
 export function LoadingCard({ className = '' }: { className?: string }) {
   return (
-    <div className={`animate-pulse bg-white rounded-lg shadow-sm border border-gray-200 p-6 ${className}`}>
+    <div className={`animate-pulse bg-white rounded-2xl shadow-soft border border-neutral-100 p-6 ${className}`}>
       <div className="space-y-4">
-        <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-        <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-        <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+        <div className="h-4 bg-gradient-to-r from-neutral-200 to-neutral-100 rounded-xl w-3/4"></div>
+        <div className="h-4 bg-gradient-to-r from-neutral-200 to-neutral-100 rounded-xl w-1/2"></div>
+        <div className="h-4 bg-gradient-to-r from-neutral-200 to-neutral-100 rounded-xl w-2/3"></div>
       </div>
     </div>
   );

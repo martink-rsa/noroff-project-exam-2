@@ -1,3 +1,5 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -38,8 +40,9 @@ export default function Pagination({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-neutral-600 bg-white/80 backdrop-blur-sm border border-neutral-200 rounded-xl hover:bg-neutral-50 hover:shadow-soft disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
       >
+        <ChevronLeft size={16} />
         Previous
       </button>
       
@@ -47,12 +50,12 @@ export default function Pagination({
         <>
           <button
             onClick={() => onPageChange(1)}
-            className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+            className="px-3 py-2 text-sm font-medium text-neutral-700 bg-white/80 backdrop-blur-sm border border-neutral-200 rounded-xl hover:bg-neutral-50 hover:shadow-soft transition-all duration-200"
           >
             1
           </button>
           {pageNumbers[0] > 2 && (
-            <span className="px-3 py-2 text-sm font-medium text-gray-500">...</span>
+            <span className="px-3 py-2 text-sm font-medium text-neutral-500">...</span>
           )}
         </>
       )}
@@ -61,10 +64,10 @@ export default function Pagination({
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={`px-3 py-2 text-sm font-medium rounded-md ${
+          className={`px-3 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
             page === currentPage
-              ? 'bg-blue-600 text-white border border-blue-600'
-              : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+              ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-soft'
+              : 'text-neutral-700 bg-white/80 backdrop-blur-sm border border-neutral-200 hover:bg-neutral-50 hover:shadow-soft'
           }`}
         >
           {page}
@@ -74,11 +77,11 @@ export default function Pagination({
       {pageNumbers[pageNumbers.length - 1] < totalPages && (
         <>
           {pageNumbers[pageNumbers.length - 1] < totalPages - 1 && (
-            <span className="px-3 py-2 text-sm font-medium text-gray-500">...</span>
+            <span className="px-3 py-2 text-sm font-medium text-neutral-500">...</span>
           )}
           <button
             onClick={() => onPageChange(totalPages)}
-            className="px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+            className="px-3 py-2 text-sm font-medium text-neutral-700 bg-white/80 backdrop-blur-sm border border-neutral-200 rounded-xl hover:bg-neutral-50 hover:shadow-soft transition-all duration-200"
           >
             {totalPages}
           </button>
@@ -88,9 +91,10 @@ export default function Pagination({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-neutral-600 bg-white/80 backdrop-blur-sm border border-neutral-200 rounded-xl hover:bg-neutral-50 hover:shadow-soft disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
       >
         Next
+        <ChevronRight size={16} />
       </button>
     </nav>
   );

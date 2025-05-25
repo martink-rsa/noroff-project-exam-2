@@ -2,11 +2,20 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format, differenceInDays } from 'date-fns';
+import { z } from 'zod';
 import { useAuth } from '../context/AuthContext';
 import { apiService } from '../services';
-import { bookingSchema, type BookingData } from '../types';
 import { ApiError } from '../types';
 import type { Venue, Booking } from '../types';
+
+// Form-specific schema - only includes the field the user inputs
+const createBookingFormSchema = (maxGuests: number) => z.object({
+  guests: z.number().min(1, 'Must have at least 1 guest').max(maxGuests, `Cannot exceed ${maxGuests} guests`),
+});
+
+type BookingFormData = {
+  guests: number;
+};
 
 interface BookingFormProps {
   venue: Venue;
@@ -25,12 +34,17 @@ export function BookingForm({
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
+  const bookingFormSchema = createBookingFormSchema(venue.maxGuests);
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<BookingData>({
-    resolver: zodResolver(bookingSchema),
+  } = useForm<BookingFormData>({
+    resolver: zodResolver(bookingFormSchema),
+    defaultValues: {
+      guests: 1,
+    },
   });
 
   const nights = selectedDateFrom && selectedDateTo 
@@ -39,7 +53,7 @@ export function BookingForm({
   
   const totalPrice = nights * venue.price;
 
-  const onSubmit = async (data: BookingData) => {
+  const onSubmit = async (data: BookingFormData) => {
     if (!isAuthenticated) {
       setError('Please login to make a booking');
       return;
@@ -173,7 +187,7 @@ export function BookingForm({
             Number of guests
           </label>
           <select
-            {...register('guests')}
+            {...register('guests', { valueAsNumber: true })}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
           >
             {Array.from({ length: venue.maxGuests }, (_, i) => i + 1).map(num => (

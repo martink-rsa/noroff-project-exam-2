@@ -1,3 +1,5 @@
+import { AlertCircle, RefreshCw } from 'lucide-react';
+
 interface ErrorMessageProps {
   title?: string;
   message: string;
@@ -12,23 +14,22 @@ export function ErrorMessage({
   className = '' 
 }: ErrorMessageProps) {
   return (
-    <div className={`bg-red-50 border border-red-200 rounded-md p-4 ${className}`} role="alert" aria-live="polite">
+    <div className={`bg-error-50 border border-error-200 rounded-xl p-4 ${className}`} role="alert" aria-live="polite">
       <div className="flex">
         <div className="flex-shrink-0">
-          <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-          </svg>
+          <AlertCircle className="h-5 w-5 text-error-500" />
         </div>
         <div className="ml-3 flex-1">
-          <h3 className="text-sm font-medium text-red-800">{title}</h3>
-          <p className="mt-1 text-sm text-red-700">{message}</p>
+          <h3 className="text-sm font-medium text-error-800">{title}</h3>
+          <p className="mt-1 text-sm text-error-700">{message}</p>
           {onRetry && (
             <div className="mt-3">
               <button
                 onClick={onRetry}
-                className="bg-red-100 text-red-800 px-3 py-1 rounded-md text-sm hover:bg-red-200 transition-colors focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                className="inline-flex items-center gap-2 bg-error-100 text-error-800 px-3 py-2 rounded-xl text-sm hover:bg-error-200 transition-all duration-200 focus:ring-2 focus:ring-error-300 focus:ring-offset-2 font-medium"
                 aria-label={`Retry: ${title}`}
               >
+                <RefreshCw size={14} />
                 Try Again
               </button>
             </div>
@@ -45,16 +46,19 @@ export function ErrorPage({
   onRetry 
 }: ErrorMessageProps) {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full text-center">
-        <div className="text-6xl mb-4">⚠️</div>
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">{title}</h1>
-        <p className="text-gray-600 mb-6">{message}</p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-error-50 to-warning-50 px-4">
+      <div className="max-w-md w-full text-center p-8 bg-white/60 backdrop-blur-sm rounded-2xl shadow-soft-lg border border-white/50">
+        <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-error-400 to-warning-400 rounded-2xl flex items-center justify-center">
+          <AlertCircle size={32} className="text-white" />
+        </div>
+        <h1 className="text-2xl font-bold text-neutral-900 mb-3">{title}</h1>
+        <p className="text-neutral-600 mb-6 leading-relaxed">{message}</p>
         {onRetry && (
           <button
             onClick={onRetry}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-6 py-3 rounded-xl transition-all duration-200 font-medium shadow-soft hover:shadow-soft-lg"
           >
+            <RefreshCw size={18} />
             Try Again
           </button>
         )}

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Building2, Star, Calendar, ArrowRight } from 'lucide-react';
 import VenueCard from '../components/VenueCard';
 import SearchBar from '../components/SearchBar';
 import { LoadingCard, ErrorMessage } from '../components/ui';
@@ -8,15 +9,16 @@ export default function Home() {
   const { venues, loading, error, refetch } = useVenues({ limit: 6 });
 
   return (
-    <div>
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+      <section className="bg-gradient-to-br from-primary-600 via-secondary-500 to-accent-400 text-white py-12 sm:py-16 lg:py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white to-white/90 bg-clip-text text-transparent">
             Find Your Perfect Getaway
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 opacity-90 max-w-3xl mx-auto">
-            Discover unique accommodations around the world
+          <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-white/90 max-w-3xl mx-auto">
+            Discover unique accommodations around the world with Holidaze
           </p>
           
           <div className="max-w-2xl mx-auto mb-6 sm:mb-8">
@@ -26,14 +28,16 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
             <Link
               to="/venues"
-              className="bg-white text-blue-600 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center"
+              className="inline-flex items-center justify-center gap-2 bg-white/95 backdrop-blur-sm text-primary-700 px-6 sm:px-8 py-3 rounded-xl font-semibold hover:bg-white hover:scale-105 transition-all duration-200 shadow-soft"
             >
+              <Building2 size={20} />
               Browse All Venues
             </Link>
             <Link
               to="/register"
-              className="border-2 border-white text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors text-center"
+              className="inline-flex items-center justify-center gap-2 border-2 border-white/80 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold hover:bg-white/20 backdrop-blur-sm transition-all duration-200"
             >
+              <Star size={20} />
               Become a Host
             </Link>
           </div>
@@ -41,13 +45,13 @@ export default function Home() {
       </section>
 
       {/* Featured Venues Section */}
-      <section className="py-12 sm:py-16 bg-gray-50">
+      <section className="py-12 sm:py-16 bg-gradient-to-b from-primary-50/50 to-secondary-50/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-3 sm:mb-4">
               Featured Venues
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto">
               Discover some of our most popular accommodations
             </p>
           </div>
@@ -76,9 +80,11 @@ export default function Home() {
               <div className="text-center mt-8 sm:mt-12">
                 <Link
                   to="/venues"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold transition-colors inline-block"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-6 sm:px-8 py-3 rounded-xl font-semibold transition-all duration-200 shadow-soft hover:shadow-soft-lg"
                 >
+                  <Building2 size={20} />
                   View All Venues
+                  <ArrowRight size={16} />
                 </Link>
               </div>
             </>
@@ -90,38 +96,38 @@ export default function Home() {
       <section className="py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold text-neutral-900 mb-4">
               Why Choose Holidaze?
             </h2>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🏠</span>
+            <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50 hover:shadow-soft-lg transition-all duration-300">
+              <div className="bg-gradient-to-br from-primary-400 to-primary-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Building2 size={28} className="text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Unique Properties</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-neutral-900">Unique Properties</h3>
+              <p className="text-neutral-600">
                 Stay in handpicked accommodations that offer something special
               </p>
             </div>
             
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">⭐</span>
+            <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50 hover:shadow-soft-lg transition-all duration-300">
+              <div className="bg-gradient-to-br from-secondary-400 to-secondary-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Star size={28} className="text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Quality Guaranteed</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-neutral-900">Quality Guaranteed</h3>
+              <p className="text-neutral-600">
                 All venues are verified and rated by our community
               </p>
             </div>
             
-            <div className="text-center">
-              <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">💼</span>
+            <div className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-2xl shadow-soft border border-white/50 hover:shadow-soft-lg transition-all duration-300">
+              <div className="bg-gradient-to-br from-accent-400 to-accent-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <Calendar size={28} className="text-white" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Easy Booking</h3>
-              <p className="text-gray-600">
+              <h3 className="text-xl font-semibold mb-2 text-neutral-900">Easy Booking</h3>
+              <p className="text-neutral-600">
                 Simple and secure booking process with instant confirmation
               </p>
             </div>
