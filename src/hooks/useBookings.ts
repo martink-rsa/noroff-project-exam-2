@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { apiService } from '../services';
+import { useAuth } from '../context/AuthContext';
 import type { Booking } from '../types';
 import { ApiError } from '../types';
 
@@ -12,15 +13,21 @@ interface UseBookingsReturn {
 }
 
 export function useBookings(): UseBookingsReturn {
+  const { user } = useAuth();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchBookings = async () => {
+    if (!user?.name) {
+      setLoading(false);
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
-      const response = await apiService.getBookings();
+      const response = await apiService.getProfileBookings(user.name);
       setBookings(response.data);
     } catch (err) {
       if (err instanceof ApiError) {
@@ -49,7 +56,7 @@ export function useBookings(): UseBookingsReturn {
 
   useEffect(() => {
     fetchBookings();
-  }, []);
+  }, [user?.name]);
 
   return {
     bookings,

@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '../context/AuthContext';
 import { profileUpdateSchema, type ProfileUpdateData } from '../types';
 import { ApiError } from '../types';
+import { User, Mail, Image, Save, Shield, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 export default function Profile() {
   const { user, updateProfile } = useAuth();
@@ -60,46 +61,52 @@ export default function Profile() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900">Access Denied</h1>
-          <p className="text-gray-600 mt-2">Please login to view your profile.</p>
+      <div className="min-h-screen bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 flex items-center justify-center">
+        <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-soft border border-white/20 p-12 text-center">
+          <AlertCircle size={64} className="text-red-400 mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-neutral-800">Access Denied</h1>
+          <p className="text-neutral-600 mt-2">Please login to view your profile.</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Profile Settings</h1>
-          <p className="text-gray-600">Manage your personal information</p>
+          <h1 className="text-3xl font-bold text-neutral-800 mb-2 flex items-center gap-3">
+            <User className="text-primary-500" />
+            Profile Settings
+          </h1>
+          <p className="text-neutral-600">Manage your personal information</p>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-6">
+          <div className="bg-red-50/80 backdrop-blur-lg border border-red-200 text-red-700 px-4 py-3 rounded-2xl mb-6 shadow-soft flex items-center gap-2">
+            <AlertCircle size={18} />
             {error}
           </div>
         )}
 
         {success && (
-          <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded mb-6">
+          <div className="bg-green-50/80 backdrop-blur-lg border border-green-200 text-green-700 px-4 py-3 rounded-2xl mb-6 shadow-soft flex items-center gap-2">
+            <CheckCircle2 size={18} />
             Profile updated successfully!
           </div>
         )}
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+        <div className="bg-white/80 backdrop-blur-lg rounded-3xl shadow-soft border border-white/20">
           {/* Profile Header */}
           <div className="relative">
             {user.banner?.url ? (
               <img
                 src={user.banner.url}
                 alt={user.banner.alt || 'Profile banner'}
-                className="w-full h-32 object-cover rounded-t-lg"
+                className="w-full h-32 object-cover rounded-t-3xl"
               />
             ) : (
-              <div className="w-full h-32 bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-lg"></div>
+              <div className="w-full h-32 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-t-3xl"></div>
             )}
             
             <div className="absolute -bottom-8 left-6">
@@ -124,7 +131,8 @@ export default function Profile() {
               <h2 className="text-xl font-semibold text-gray-900">{user.name}</h2>
               <p className="text-gray-600">{user.email}</p>
               {user.venueManager && (
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mt-2">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-800 mt-2">
+                  <Shield size={12} className="mr-1" />
                   Venue Manager
                 </span>
               )}
@@ -139,7 +147,7 @@ export default function Profile() {
                 <textarea
                   {...register('bio')}
                   rows={4}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-neutral-300 rounded-2xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200"
                   placeholder="Tell us about yourself (max 160 characters)"
                 />
                 {errors.bio && (
@@ -153,17 +161,20 @@ export default function Profile() {
                   Avatar
                 </label>
                 <div className="space-y-2">
-                  <input
-                    {...register('avatar.url')}
-                    type="url"
-                    placeholder="Avatar image URL"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  />
+                  <div className="relative">
+                    <Image size={18} className="absolute left-3 top-3.5 text-neutral-400" />
+                    <input
+                      {...register('avatar.url')}
+                      type="url"
+                      placeholder="Avatar image URL"
+                      className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-2xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200"
+                    />
+                  </div>
                   <input
                     {...register('avatar.alt')}
                     type="text"
                     placeholder="Avatar alt text (optional)"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-2xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200"
                   />
                 </div>
                 {errors.avatar?.url && (
@@ -177,17 +188,20 @@ export default function Profile() {
                   Banner
                 </label>
                 <div className="space-y-2">
-                  <input
-                    {...register('banner.url')}
-                    type="url"
-                    placeholder="Banner image URL"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
-                  />
+                  <div className="relative">
+                    <Image size={18} className="absolute left-3 top-3.5 text-neutral-400" />
+                    <input
+                      {...register('banner.url')}
+                      type="url"
+                      placeholder="Banner image URL"
+                      className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-2xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200"
+                    />
+                  </div>
                   <input
                     {...register('banner.alt')}
                     type="text"
                     placeholder="Banner alt text (optional)"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-3 border border-neutral-300 rounded-2xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200"
                   />
                 </div>
                 {errors.banner?.url && (
@@ -196,32 +210,38 @@ export default function Profile() {
               </div>
 
               {/* Account Info */}
-              <div className="border-t pt-6">
-                <h3 className="text-lg font-medium text-gray-900 mb-4">Account Information</h3>
+              <div className="border-t border-neutral-200 pt-6">
+                <h3 className="text-lg font-medium text-neutral-800 mb-4">Account Information</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Username
                     </label>
-                    <input
-                      type="text"
-                      value={user.name}
-                      disabled
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500"
-                    />
-                    <p className="mt-1 text-sm text-gray-500">Username cannot be changed</p>
+                    <div className="relative">
+                      <User size={18} className="absolute left-3 top-3.5 text-neutral-400" />
+                      <input
+                        type="text"
+                        value={user.name}
+                        disabled
+                        className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-2xl bg-neutral-50 text-neutral-500"
+                      />
+                    </div>
+                    <p className="mt-1 text-sm text-neutral-500">Username cannot be changed</p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Email
                     </label>
-                    <input
-                      type="email"
-                      value={user.email}
-                      disabled
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-gray-500"
-                    />
-                    <p className="mt-1 text-sm text-gray-500">Email cannot be changed</p>
+                    <div className="relative">
+                      <Mail size={18} className="absolute left-3 top-3.5 text-neutral-400" />
+                      <input
+                        type="email"
+                        value={user.email}
+                        disabled
+                        className="w-full pl-10 pr-4 py-3 border border-neutral-300 rounded-2xl bg-neutral-50 text-neutral-500"
+                      />
+                    </div>
+                    <p className="mt-1 text-sm text-neutral-500">Email cannot be changed</p>
                   </div>
                 </div>
               </div>
@@ -231,8 +251,9 @@ export default function Profile() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-3 rounded-2xl hover:from-primary-600 hover:to-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 shadow-soft hover:shadow-soft-lg transform hover:-translate-y-0.5 disabled:transform-none flex items-center gap-2 font-medium"
                 >
+                  <Save size={16} />
                   {isSubmitting ? 'Saving...' : 'Save Changes'}
                 </button>
               </div>
