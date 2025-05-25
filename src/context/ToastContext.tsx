@@ -32,47 +32,63 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const removeToast = useCallback((id: string) => {
-    setToasts(prev => prev.filter(toast => toast.id !== id));
+    setToasts((prev) => prev.filter((toast) => toast.id !== id));
   }, []);
 
-  const addToast = useCallback((toast: Omit<Toast, 'id'>) => {
-    const id = Date.now().toString();
-    const newToast = { ...toast, id };
-    setToasts(prev => [...prev, newToast]);
+  const addToast = useCallback(
+    (toast: Omit<Toast, 'id'>) => {
+      const id = Date.now().toString();
+      const newToast = { ...toast, id };
+      setToasts((prev) => [...prev, newToast]);
 
-    // Auto remove after duration
-    const duration = toast.duration || 5000;
-    setTimeout(() => {
-      removeToast(id);
-    }, duration);
-  }, [removeToast]);
+      const duration = toast.duration || 5000;
+      setTimeout(() => {
+        removeToast(id);
+      }, duration);
+    },
+    [removeToast],
+  );
 
-  const showSuccess = useCallback((message: string, title?: string) => {
-    addToast({ type: 'success', message, title });
-  }, [addToast]);
+  const showSuccess = useCallback(
+    (message: string, title?: string) => {
+      addToast({ type: 'success', message, title });
+    },
+    [addToast],
+  );
 
-  const showError = useCallback((message: string, title?: string) => {
-    addToast({ type: 'error', message, title, duration: 7000 });
-  }, [addToast]);
+  const showError = useCallback(
+    (message: string, title?: string) => {
+      addToast({ type: 'error', message, title, duration: 7000 });
+    },
+    [addToast],
+  );
 
-  const showWarning = useCallback((message: string, title?: string) => {
-    addToast({ type: 'warning', message, title });
-  }, [addToast]);
+  const showWarning = useCallback(
+    (message: string, title?: string) => {
+      addToast({ type: 'warning', message, title });
+    },
+    [addToast],
+  );
 
-  const showInfo = useCallback((message: string, title?: string) => {
-    addToast({ type: 'info', message, title });
-  }, [addToast]);
+  const showInfo = useCallback(
+    (message: string, title?: string) => {
+      addToast({ type: 'info', message, title });
+    },
+    [addToast],
+  );
 
   return (
-    <ToastContext.Provider value={{
-      toasts,
-      addToast,
-      removeToast,
-      showSuccess,
-      showError,
-      showWarning,
-      showInfo
-    }}>
+    <ToastContext.Provider
+      value={{
+        toasts,
+        addToast,
+        removeToast,
+        showSuccess,
+        showError,
+        showWarning,
+        showInfo,
+      }}
+    >
       {children}
     </ToastContext.Provider>
   );

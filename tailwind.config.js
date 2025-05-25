@@ -1,13 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        // Soft Sage Green as Primary
         primary: {
           50: '#f8faf8',
           100: '#e8f5e8',
@@ -20,7 +16,6 @@ export default {
           800: '#315631',
           900: '#2a472a',
         },
-        // Warm Peach as Secondary
         secondary: {
           50: '#fef9f7',
           100: '#fef1ed',
@@ -33,7 +28,6 @@ export default {
           800: '#a3452a',
           900: '#863c28',
         },
-        // Soft Lavender as Accent
         accent: {
           50: '#faf9ff',
           100: '#f3f1ff',
@@ -46,7 +40,6 @@ export default {
           800: '#6332e3',
           900: '#522abd',
         },
-        // Neutral grays with warm undertones
         neutral: {
           50: '#fafafa',
           100: '#f5f5f5',
@@ -59,7 +52,6 @@ export default {
           800: '#3a3a3a',
           900: '#262626',
         },
-        // Success, warning, and error in pastel tones
         success: {
           50: '#f0f9f0',
           100: '#dcf2dc',
@@ -95,18 +87,18 @@ export default {
           700: '#aa3535',
           800: '#8c2e2e',
           900: '#752a2a',
-        }
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'soft': '0 2px 15px 0 rgba(0, 0, 0, 0.05)',
+        soft: '0 2px 15px 0 rgba(0, 0, 0, 0.05)',
         'soft-lg': '0 4px 20px 0 rgba(0, 0, 0, 0.08)',
         'soft-xl': '0 8px 30px 0 rgba(0, 0, 0, 0.1)',
       },
       borderRadius: {
-        'xl': '0.875rem',
+        xl: '0.875rem',
         '2xl': '1.125rem',
       },
       animation: {
@@ -126,4 +118,4 @@ export default {
     },
   },
   plugins: [],
-}
+};

@@ -9,10 +9,10 @@ export default function MyBookings() {
   const { bookings, loading, error, deleteBooking } = useBookings();
   const [filter, setFilter] = useState<'all' | 'upcoming' | 'past'>('all');
 
-  const filteredBookings = bookings.filter(booking => {
+  const filteredBookings = bookings.filter((booking) => {
     const checkInDate = parseISO(booking.dateFrom);
     const isUpcoming = !isPast(checkInDate);
-    
+
     switch (filter) {
       case 'upcoming':
         return isUpcoming;
@@ -23,8 +23,10 @@ export default function MyBookings() {
     }
   });
 
-  const upcomingCount = bookings.filter(b => !isPast(parseISO(b.dateFrom))).length;
-  const pastCount = bookings.filter(b => isPast(parseISO(b.dateFrom))).length;
+  const upcomingCount = bookings.filter(
+    (b) => !isPast(parseISO(b.dateFrom)),
+  ).length;
+  const pastCount = bookings.filter((b) => isPast(parseISO(b.dateFrom))).length;
 
   if (loading) {
     return (
@@ -38,7 +40,9 @@ export default function MyBookings() {
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-neutral-800 mb-4">My Bookings</h1>
+          <h1 className="text-3xl font-bold text-neutral-800 mb-4">
+            My Bookings
+          </h1>
           <p className="text-neutral-600 flex items-center gap-2">
             <Calendar size={16} className="text-primary-500" />
             View and manage your accommodation bookings
@@ -95,12 +99,10 @@ export default function MyBookings() {
               <Calendar size={64} className="text-primary-300 mx-auto" />
             </div>
             <h3 className="text-lg font-semibold text-neutral-800 mb-2">
-              {filter === 'all' 
-                ? 'No bookings yet' 
-                : `No ${filter} bookings`}
+              {filter === 'all' ? 'No bookings yet' : `No ${filter} bookings`}
             </h3>
             <p className="text-neutral-600 mb-8">
-              {filter === 'all' 
+              {filter === 'all'
                 ? 'Start planning your next trip by browsing available venues.'
                 : `You don't have any ${filter} bookings.`}
             </p>

@@ -8,10 +8,13 @@ import { apiService } from '../services';
 import { ApiError } from '../types';
 import type { Venue, Booking } from '../types';
 
-// Form-specific schema - only includes the field the user inputs
-const createBookingFormSchema = (maxGuests: number) => z.object({
-  guests: z.number().min(1, 'Must have at least 1 guest').max(maxGuests, `Cannot exceed ${maxGuests} guests`),
-});
+const createBookingFormSchema = (maxGuests: number) =>
+  z.object({
+    guests: z
+      .number()
+      .min(1, 'Must have at least 1 guest')
+      .max(maxGuests, `Cannot exceed ${maxGuests} guests`),
+  });
 
 type BookingFormData = {
   guests: number;
@@ -24,11 +27,11 @@ interface BookingFormProps {
   onBookingSuccess?: (booking: Booking) => void;
 }
 
-export function BookingForm({ 
-  venue, 
-  selectedDateFrom, 
+export function BookingForm({
+  venue,
+  selectedDateFrom,
   selectedDateTo,
-  onBookingSuccess 
+  onBookingSuccess,
 }: BookingFormProps) {
   const { isAuthenticated, user } = useAuth();
   const [error, setError] = useState<string | null>(null);
@@ -47,10 +50,11 @@ export function BookingForm({
     },
   });
 
-  const nights = selectedDateFrom && selectedDateTo 
-    ? differenceInDays(selectedDateTo, selectedDateFrom)
-    : 0;
-  
+  const nights =
+    selectedDateFrom && selectedDateTo
+      ? differenceInDays(selectedDateTo, selectedDateFrom)
+      : 0;
+
   const totalPrice = nights * venue.price;
 
   const onSubmit = async (data: BookingFormData) => {
@@ -77,7 +81,7 @@ export function BookingForm({
 
       const response = await apiService.createBooking(bookingData);
       setSuccess(true);
-      
+
       if (onBookingSuccess) {
         onBookingSuccess(response.data);
       }
@@ -95,9 +99,7 @@ export function BookingForm({
       <div className="bg-white border border-gray-200 rounded-lg p-6">
         <h3 className="text-lg font-semibold mb-4">Book This Venue</h3>
         <div className="text-center py-8">
-          <p className="text-gray-600 mb-4">
-            Please login to make a booking
-          </p>
+          <p className="text-gray-600 mb-4">Please login to make a booking</p>
           <a
             href="/login"
             className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors"
@@ -147,7 +149,7 @@ export function BookingForm({
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-6">
       <h3 className="text-lg font-semibold mb-4">Book This Venue</h3>
-      
+
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4">
           {error}
@@ -162,7 +164,9 @@ export function BookingForm({
             </label>
             <input
               type="text"
-              value={selectedDateFrom ? format(selectedDateFrom, 'MMM dd, yyyy') : ''}
+              value={
+                selectedDateFrom ? format(selectedDateFrom, 'MMM dd, yyyy') : ''
+              }
               readOnly
               className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
               placeholder="Select date"
@@ -174,7 +178,9 @@ export function BookingForm({
             </label>
             <input
               type="text"
-              value={selectedDateTo ? format(selectedDateTo, 'MMM dd, yyyy') : ''}
+              value={
+                selectedDateTo ? format(selectedDateTo, 'MMM dd, yyyy') : ''
+              }
               readOnly
               className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-50"
               placeholder="Select date"
@@ -183,21 +189,28 @@ export function BookingForm({
         </div>
 
         <div>
-          <label htmlFor="guests" className="block text-sm font-medium text-gray-700 mb-1">
+          <label
+            htmlFor="guests"
+            className="block text-sm font-medium text-gray-700 mb-1"
+          >
             Number of guests
           </label>
           <select
             {...register('guests', { valueAsNumber: true })}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
           >
-            {Array.from({ length: venue.maxGuests }, (_, i) => i + 1).map(num => (
-              <option key={num} value={num}>
-                {num} guest{num !== 1 ? 's' : ''}
-              </option>
-            ))}
+            {Array.from({ length: venue.maxGuests }, (_, i) => i + 1).map(
+              (num) => (
+                <option key={num} value={num}>
+                  {num} guest{num !== 1 ? 's' : ''}
+                </option>
+              ),
+            )}
           </select>
           {errors.guests && (
-            <p className="mt-1 text-sm text-red-600">{errors.guests.message as string}</p>
+            <p className="mt-1 text-sm text-red-600">
+              {errors.guests.message as string}
+            </p>
           )}
         </div>
 

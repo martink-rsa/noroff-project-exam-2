@@ -10,7 +10,7 @@ import { useVenueSearch } from '../hooks';
 export default function Venues() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialQuery = searchParams.get('search') || '';
-  
+
   const {
     venues,
     loading,
@@ -37,7 +37,10 @@ export default function Venues() {
     setSearchParams(searchQuery ? { search: searchQuery } : {});
   };
 
-  const handleSortChange = (newSortBy: string, newSortOrder: 'asc' | 'desc') => {
+  const handleSortChange = (
+    newSortBy: string,
+    newSortOrder: 'asc' | 'desc',
+  ) => {
     setSort(newSortBy, newSortOrder);
   };
 
@@ -56,11 +59,12 @@ export default function Venues() {
               </h1>
             </div>
             <p className="text-lg text-neutral-600 mb-8 max-w-2xl mx-auto">
-              Find the perfect accommodation for your next trip with our curated collection of unique venues
+              Find the perfect accommodation for your next trip with our curated
+              collection of unique venues
             </p>
-            
+
             <div className="max-w-2xl mx-auto">
-              <SearchBar 
+              <SearchBar
                 onSearch={handleSearch}
                 placeholder="Search by location, venue name, or description..."
               />
@@ -77,25 +81,22 @@ export default function Venues() {
               <div className="flex items-center gap-2">
                 <MapPin size={18} className="text-primary-500" />
                 <h2 className="text-xl font-semibold text-neutral-900">
-                  Search results for "<span className="text-primary-600">{query}</span>"
+                  Search results for "
+                  <span className="text-primary-600">{query}</span>"
                 </h2>
               </div>
             </div>
           )}
-          
+
           <VenueFilters
             sortBy={sortBy}
             sortOrder={sortOrder}
             onSortChange={handleSortChange}
             totalCount={totalCount}
           />
-          
-          <VenueGrid
-            venues={venues}
-            loading={loading}
-            error={error}
-          />
-          
+
+          <VenueGrid venues={venues} loading={loading} error={error} />
+
           {totalPages > 1 && !loading && (
             <div className="mt-12">
               <Pagination

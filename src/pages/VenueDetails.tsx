@@ -1,22 +1,22 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  MapPin, 
-  Users, 
-  Star, 
-  Wifi, 
-  Car, 
-  Coffee, 
-  PawPrint, 
+import {
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  Users,
+  Star,
+  Wifi,
+  Car,
+  Coffee,
+  PawPrint,
   Building2,
   DollarSign,
   Calendar as CalendarIcon,
   User,
   UserCheck,
   Eye,
-  ArrowLeft
+  ArrowLeft,
 } from 'lucide-react';
 import { Calendar } from '../components/Calendar';
 import { BookingForm } from '../components/BookingForm';
@@ -50,7 +50,9 @@ export default function VenueDetails() {
       <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 flex items-center justify-center">
         <div className="text-center p-8 bg-white/60 backdrop-blur-sm rounded-2xl shadow-soft-lg border border-white/50">
           <LoadingSpinner size="large" className="mx-auto mb-4" />
-          <p className="text-neutral-700 font-medium">Loading venue details...</p>
+          <p className="text-neutral-700 font-medium">
+            Loading venue details...
+          </p>
         </div>
       </div>
     );
@@ -88,7 +90,7 @@ export default function VenueDetails() {
         {/* Breadcrumb */}
         <nav className="mb-8">
           <div className="flex items-center gap-3 p-4 bg-white/60 backdrop-blur-sm rounded-xl border border-white/50 shadow-soft">
-            <Link 
+            <Link
               to="/venues"
               className="inline-flex items-center gap-2 text-neutral-600 hover:text-primary-600 transition-colors"
             >
@@ -97,10 +99,28 @@ export default function VenueDetails() {
             </Link>
             <span className="text-neutral-400">•</span>
             <ol className="flex items-center space-x-2 text-sm text-neutral-500">
-              <li><Link to="/" className="hover:text-primary-600 transition-colors">Home</Link></li>
-              <li><ChevronRight size={14} /></li>
-              <li><Link to="/venues" className="hover:text-primary-600 transition-colors">Venues</Link></li>
-              <li><ChevronRight size={14} /></li>
+              <li>
+                <Link
+                  to="/"
+                  className="hover:text-primary-600 transition-colors"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <ChevronRight size={14} />
+              </li>
+              <li>
+                <Link
+                  to="/venues"
+                  className="hover:text-primary-600 transition-colors"
+                >
+                  Venues
+                </Link>
+              </li>
+              <li>
+                <ChevronRight size={14} />
+              </li>
               <li className="text-neutral-900 font-medium">{venue.name}</li>
             </ol>
           </div>
@@ -121,17 +141,25 @@ export default function VenueDetails() {
                   {images.length > 1 && (
                     <>
                       <button
-                        onClick={() => setCurrentImageIndex(
-                          currentImageIndex === 0 ? images.length - 1 : currentImageIndex - 1
-                        )}
+                        onClick={() =>
+                          setCurrentImageIndex(
+                            currentImageIndex === 0
+                              ? images.length - 1
+                              : currentImageIndex - 1,
+                          )
+                        }
                         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full p-3 shadow-soft hover:shadow-soft-lg transition-all duration-200 opacity-0 group-hover:opacity-100"
                       >
                         <ChevronLeft size={20} className="text-neutral-700" />
                       </button>
                       <button
-                        onClick={() => setCurrentImageIndex(
-                          currentImageIndex === images.length - 1 ? 0 : currentImageIndex + 1
-                        )}
+                        onClick={() =>
+                          setCurrentImageIndex(
+                            currentImageIndex === images.length - 1
+                              ? 0
+                              : currentImageIndex + 1,
+                          )
+                        }
                         className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full p-3 shadow-soft hover:shadow-soft-lg transition-all duration-200 opacity-0 group-hover:opacity-100"
                       >
                         <ChevronRight size={20} className="text-neutral-700" />
@@ -149,8 +177,8 @@ export default function VenueDetails() {
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
                         className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
-                          index === currentImageIndex 
-                            ? 'border-primary-500 ring-2 ring-primary-200' 
+                          index === currentImageIndex
+                            ? 'border-primary-500 ring-2 ring-primary-200'
                             : 'border-neutral-200 hover:border-primary-300'
                         }`}
                       >
@@ -168,7 +196,9 @@ export default function VenueDetails() {
               <div className="bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-2xl h-96 flex items-center justify-center border border-neutral-200">
                 <div className="text-center">
                   <Eye size={48} className="text-neutral-400 mx-auto mb-3" />
-                  <span className="text-neutral-500 text-lg font-medium">No images available</span>
+                  <span className="text-neutral-500 text-lg font-medium">
+                    No images available
+                  </span>
                 </div>
               </div>
             )}
@@ -176,13 +206,20 @@ export default function VenueDetails() {
             {/* Venue Info */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-soft border border-white/50">
               <div className="mb-6">
-                <h1 className="text-3xl font-bold text-neutral-900 mb-3">{venue.name}</h1>
+                <h1 className="text-3xl font-bold text-neutral-900 mb-3">
+                  {venue.name}
+                </h1>
                 {venue.location && (
                   <div className="flex items-center gap-2 text-neutral-600">
                     <MapPin size={18} className="text-primary-500" />
                     <span>
-                      {[venue.location.address, venue.location.city, venue.location.country]
-                        .filter(Boolean).join(', ')}
+                      {[
+                        venue.location.address,
+                        venue.location.city,
+                        venue.location.country,
+                      ]
+                        .filter(Boolean)
+                        .join(', ')}
                     </span>
                   </div>
                 )}
@@ -192,24 +229,39 @@ export default function VenueDetails() {
                 <div className="text-center p-4 bg-primary-50 rounded-xl border border-primary-100">
                   <div className="flex items-center justify-center gap-1 mb-1">
                     <DollarSign size={18} className="text-primary-500" />
-                    <div className="text-2xl font-bold text-primary-700">${venue.price}</div>
+                    <div className="text-2xl font-bold text-primary-700">
+                      ${venue.price}
+                    </div>
                   </div>
-                  <div className="text-sm text-primary-600 font-medium">per night</div>
+                  <div className="text-sm text-primary-600 font-medium">
+                    per night
+                  </div>
                 </div>
                 <div className="text-center p-4 bg-secondary-50 rounded-xl border border-secondary-100">
                   <div className="flex items-center justify-center gap-1 mb-1">
                     <Users size={18} className="text-secondary-500" />
-                    <div className="text-2xl font-bold text-secondary-700">{venue.maxGuests}</div>
+                    <div className="text-2xl font-bold text-secondary-700">
+                      {venue.maxGuests}
+                    </div>
                   </div>
-                  <div className="text-sm text-secondary-600 font-medium">max guests</div>
+                  <div className="text-sm text-secondary-600 font-medium">
+                    max guests
+                  </div>
                 </div>
                 {venue.rating && (
                   <div className="text-center p-4 bg-warning-50 rounded-xl border border-warning-100">
                     <div className="flex items-center justify-center gap-1 mb-1">
-                      <Star size={18} className="text-warning-500 fill-warning-500" />
-                      <div className="text-2xl font-bold text-warning-700">{venue.rating}</div>
+                      <Star
+                        size={18}
+                        className="text-warning-500 fill-warning-500"
+                      />
+                      <div className="text-2xl font-bold text-warning-700">
+                        {venue.rating}
+                      </div>
                     </div>
-                    <div className="text-sm text-warning-600 font-medium">rating</div>
+                    <div className="text-sm text-warning-600 font-medium">
+                      rating
+                    </div>
                   </div>
                 )}
                 <div className="text-center p-4 bg-accent-50 rounded-xl border border-accent-100">
@@ -219,7 +271,9 @@ export default function VenueDetails() {
                       {venue.bookings?.length || 0}
                     </div>
                   </div>
-                  <div className="text-sm text-accent-600 font-medium">bookings</div>
+                  <div className="text-sm text-accent-600 font-medium">
+                    bookings
+                  </div>
                 </div>
               </div>
 
@@ -253,8 +307,12 @@ export default function VenueDetails() {
               )}
 
               <div>
-                <h2 className="text-xl font-bold text-neutral-900 mb-4">Description</h2>
-                <p className="text-neutral-700 leading-relaxed">{venue.description}</p>
+                <h2 className="text-xl font-bold text-neutral-900 mb-4">
+                  Description
+                </h2>
+                <p className="text-neutral-700 leading-relaxed">
+                  {venue.description}
+                </p>
               </div>
             </div>
 
@@ -278,9 +336,13 @@ export default function VenueDetails() {
                     </div>
                   )}
                   <div>
-                    <h3 className="font-bold text-neutral-900">{venue.owner.name}</h3>
+                    <h3 className="font-bold text-neutral-900">
+                      {venue.owner.name}
+                    </h3>
                     {venue.owner.bio && (
-                      <p className="text-sm text-neutral-600 mt-1 leading-relaxed">{venue.owner.bio}</p>
+                      <p className="text-sm text-neutral-600 mt-1 leading-relaxed">
+                        {venue.owner.bio}
+                      </p>
                     )}
                     {venue.owner.venueManager && (
                       <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-medium bg-accent-100 text-accent-800 border border-accent-200 mt-2">

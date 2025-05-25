@@ -6,33 +6,59 @@ import { z } from 'zod';
 import { apiService } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
 import { LoadingSpinner } from '../../components/ui';
-import { ArrowLeft, Building2, Image, MapPin, Wifi, Car, Coffee, PawPrint, Plus, Trash2 } from 'lucide-react';
+import {
+  ArrowLeft,
+  Building2,
+  Image,
+  MapPin,
+  Wifi,
+  Car,
+  Coffee,
+  PawPrint,
+  Plus,
+  Trash2,
+} from 'lucide-react';
 
 const venueSchema = z.object({
-  name: z.string().min(1, 'Name is required').max(100, 'Name must be less than 100 characters'),
-  description: z.string().min(1, 'Description is required').max(500, 'Description must be less than 500 characters'),
-  media: z.array(z.object({
-    url: z.string().url('Must be a valid URL'),
-    alt: z.string().optional()
-  })).optional(),
+  name: z
+    .string()
+    .min(1, 'Name is required')
+    .max(100, 'Name must be less than 100 characters'),
+  description: z
+    .string()
+    .min(1, 'Description is required')
+    .max(500, 'Description must be less than 500 characters'),
+  media: z
+    .array(
+      z.object({
+        url: z.string().url('Must be a valid URL'),
+        alt: z.string().optional(),
+      }),
+    )
+    .optional(),
   price: z.number().min(1, 'Price must be at least $1'),
-  maxGuests: z.number().min(1, 'Must accommodate at least 1 guest').max(100, 'Cannot exceed 100 guests'),
+  maxGuests: z
+    .number()
+    .min(1, 'Must accommodate at least 1 guest')
+    .max(100, 'Cannot exceed 100 guests'),
   rating: z.number().min(0).max(5).optional(),
   meta: z.object({
     wifi: z.boolean(),
     parking: z.boolean(),
     breakfast: z.boolean(),
-    pets: z.boolean()
+    pets: z.boolean(),
   }),
-  location: z.object({
-    address: z.string().optional(),
-    city: z.string().optional(),
-    zip: z.string().optional(),
-    country: z.string().optional(),
-    continent: z.string().optional(),
-    lat: z.number().optional(),
-    lng: z.number().optional()
-  }).optional()
+  location: z
+    .object({
+      address: z.string().optional(),
+      city: z.string().optional(),
+      zip: z.string().optional(),
+      country: z.string().optional(),
+      continent: z.string().optional(),
+      lat: z.number().optional(),
+      lng: z.number().optional(),
+    })
+    .optional(),
 });
 
 type VenueFormData = z.infer<typeof venueSchema>;
@@ -55,10 +81,10 @@ export default function CreateVenue() {
         wifi: false,
         parking: false,
         breakfast: false,
-        pets: false
+        pets: false,
       },
-      location: {}
-    }
+      location: {},
+    },
   });
 
   const addMediaUrl = () => {
@@ -79,8 +105,11 @@ export default function CreateVenue() {
   };
 
   const updateMediaValue = (urls: string[]) => {
-    const validUrls = urls.filter(url => url.trim() !== '');
-    setValue('media', validUrls.map(url => ({ url, alt: '' })));
+    const validUrls = urls.filter((url) => url.trim() !== '');
+    setValue(
+      'media',
+      validUrls.map((url) => ({ url, alt: '' })),
+    );
   };
 
   const onSubmit = async (data: VenueFormData) => {
@@ -105,19 +134,27 @@ export default function CreateVenue() {
             <Building2 className="text-primary-500" />
             Create New Venue
           </h1>
-          <p className="text-neutral-600 mt-1">Add a new property to your listings</p>
+          <p className="text-neutral-600 mt-1">
+            Add a new property to your listings
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-6 sm:space-y-8"
+        >
           <div className="bg-white/80 backdrop-blur-lg p-4 sm:p-6 rounded-3xl shadow-soft border border-white/20">
             <h2 className="text-lg sm:text-xl font-semibold text-neutral-800 mb-4 sm:mb-6 flex items-center gap-2">
               <Building2 size={20} className="text-primary-500" />
               Basic Information
             </h2>
-            
+
             <div className="grid grid-cols-1 gap-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Venue Name *
                 </label>
                 <input
@@ -128,12 +165,17 @@ export default function CreateVenue() {
                   placeholder="Beautiful Oceanview Apartment"
                 />
                 {errors.name && (
-                  <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="description"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Description *
                 </label>
                 <textarea
@@ -144,13 +186,18 @@ export default function CreateVenue() {
                   placeholder="Describe your venue, its amenities, and what makes it special..."
                 />
                 {errors.description && (
-                  <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.description.message}
+                  </p>
                 )}
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="price" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="price"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Price per night ($) *
                   </label>
                   <input
@@ -161,12 +208,17 @@ export default function CreateVenue() {
                     placeholder="150"
                   />
                   {errors.price && (
-                    <p className="mt-1 text-sm text-red-600">{errors.price.message}</p>
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.price.message}
+                    </p>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="maxGuests" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label
+                    htmlFor="maxGuests"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
                     Maximum Guests *
                   </label>
                   <input
@@ -177,7 +229,9 @@ export default function CreateVenue() {
                     placeholder="4"
                   />
                   {errors.maxGuests && (
-                    <p className="mt-1 text-sm text-red-600">{errors.maxGuests.message}</p>
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.maxGuests.message}
+                    </p>
                   )}
                 </div>
               </div>
@@ -189,7 +243,7 @@ export default function CreateVenue() {
               <Image size={20} className="text-primary-500" />
               Photos
             </h2>
-            
+
             <div className="space-y-4">
               {mediaUrls.map((url, index) => (
                 <div key={index} className="flex gap-2">
@@ -212,7 +266,7 @@ export default function CreateVenue() {
                   )}
                 </div>
               ))}
-              
+
               <button
                 type="button"
                 onClick={addMediaUrl}
@@ -225,8 +279,10 @@ export default function CreateVenue() {
           </div>
 
           <div className="bg-white/80 backdrop-blur-lg p-6 rounded-3xl shadow-soft border border-white/20">
-            <h2 className="text-xl font-semibold text-neutral-800 mb-6">Amenities</h2>
-            
+            <h2 className="text-xl font-semibold text-neutral-800 mb-6">
+              Amenities
+            </h2>
+
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <label className="flex items-center gap-3 p-3 bg-primary-50/50 rounded-2xl hover:bg-primary-50 transition-colors cursor-pointer">
                 <input
@@ -235,9 +291,11 @@ export default function CreateVenue() {
                   className="rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
                 />
                 <Wifi size={18} className="text-primary-500" />
-                <span className="text-sm text-neutral-700 font-medium">WiFi</span>
+                <span className="text-sm text-neutral-700 font-medium">
+                  WiFi
+                </span>
               </label>
-              
+
               <label className="flex items-center gap-3 p-3 bg-primary-50/50 rounded-2xl hover:bg-primary-50 transition-colors cursor-pointer">
                 <input
                   type="checkbox"
@@ -245,9 +303,11 @@ export default function CreateVenue() {
                   className="rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
                 />
                 <Car size={18} className="text-primary-500" />
-                <span className="text-sm text-neutral-700 font-medium">Parking</span>
+                <span className="text-sm text-neutral-700 font-medium">
+                  Parking
+                </span>
               </label>
-              
+
               <label className="flex items-center gap-3 p-3 bg-primary-50/50 rounded-2xl hover:bg-primary-50 transition-colors cursor-pointer">
                 <input
                   type="checkbox"
@@ -255,9 +315,11 @@ export default function CreateVenue() {
                   className="rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
                 />
                 <Coffee size={18} className="text-primary-500" />
-                <span className="text-sm text-neutral-700 font-medium">Breakfast</span>
+                <span className="text-sm text-neutral-700 font-medium">
+                  Breakfast
+                </span>
               </label>
-              
+
               <label className="flex items-center gap-3 p-3 bg-primary-50/50 rounded-2xl hover:bg-primary-50 transition-colors cursor-pointer">
                 <input
                   type="checkbox"
@@ -265,7 +327,9 @@ export default function CreateVenue() {
                   className="rounded border-neutral-300 text-primary-600 focus:ring-primary-500"
                 />
                 <PawPrint size={18} className="text-primary-500" />
-                <span className="text-sm text-neutral-700 font-medium">Pets Allowed</span>
+                <span className="text-sm text-neutral-700 font-medium">
+                  Pets Allowed
+                </span>
               </label>
             </div>
           </div>
@@ -275,10 +339,13 @@ export default function CreateVenue() {
               <MapPin size={20} className="text-primary-500" />
               Location
             </h2>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="address"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Address
                 </label>
                 <input
@@ -291,7 +358,10 @@ export default function CreateVenue() {
               </div>
 
               <div>
-                <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="city"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   City
                 </label>
                 <input
@@ -304,7 +374,10 @@ export default function CreateVenue() {
               </div>
 
               <div>
-                <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="country"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   Country
                 </label>
                 <input
@@ -317,7 +390,10 @@ export default function CreateVenue() {
               </div>
 
               <div>
-                <label htmlFor="zip" className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="zip"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
                   ZIP Code
                 </label>
                 <input
@@ -347,7 +423,9 @@ export default function CreateVenue() {
             >
               <div className="flex items-center justify-center gap-2">
                 {loading && <LoadingSpinner size="small" />}
-                {loading ? 'Creating...' : (
+                {loading ? (
+                  'Creating...'
+                ) : (
                   <>
                     <Building2 size={16} />
                     Create Venue
