@@ -8,7 +8,7 @@ interface BookingCardProps {
   onDelete?: (id: string) => Promise<void>;
 }
 
-export function BookingCard({ booking, onDelete }: BookingCardProps) {
+export default function BookingCard({ booking, onDelete }: BookingCardProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 

@@ -7,7 +7,7 @@ interface SearchBarProps {
   className?: string;
 }
 
-export function SearchBar({ 
+export default function SearchBar({ 
   onSearch, 
   placeholder = "Search venues...", 
   className = "" 

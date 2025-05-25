@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookingCard } from '../components/BookingCard';
+import BookingCard from '../components/BookingCard';
 import { useBookings } from '../hooks/useBookings';
 import { isPast, parseISO } from 'date-fns';
 

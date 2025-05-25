@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { SearchBar } from '../components/SearchBar';
+import SearchBar from '../components/SearchBar';
 import { VenueGrid } from '../components/VenueGrid';
 import { VenueFilters } from '../components/VenueFilters';
-import { Pagination } from '../components/Pagination';
+import Pagination from '../components/Pagination';
 import { useVenueSearch } from '../hooks';
 
 export default function Venues() {

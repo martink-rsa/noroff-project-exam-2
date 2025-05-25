@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { VenueCard } from '../components/VenueCard';
-import { SearchBar } from '../components/SearchBar';
+import VenueCard from '../components/VenueCard';
+import SearchBar from '../components/SearchBar';
 import { LoadingCard, ErrorMessage } from '../components/ui';
 import { useVenues } from '../hooks';
 

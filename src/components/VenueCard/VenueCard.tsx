@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { LazyImage } from './ui/LazyImage';
-import type { Venue } from '../types';
+import { LazyImage } from '../ui/LazyImage';
+import type { Venue } from '../../types';
 
 interface VenueCardProps {
   venue: Venue;
 }
 
-export function VenueCard({ venue }: VenueCardProps) {
+export default function VenueCard({ venue }: VenueCardProps) {
   const primaryImage = venue.media?.[0];
   
   return (
