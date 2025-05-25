@@ -150,7 +150,7 @@ export default function BookingCard({ booking, onDelete }: BookingCardProps) {
                     <button
                       onClick={handleDelete}
                       disabled={isDeleting}
-                      className="flex items-center gap-1 bg-error-500 hover:bg-error-600 disabled:bg-error-300 text-white px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 disabled:cursor-not-allowed"
+                      className="flex items-center gap-1 bg-error-500 hover:bg-error-600 disabled:bg-error-300 text-neutral-900 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200 disabled:cursor-not-allowed"
                     >
                       <Check size={14} />
                       {isDeleting ? 'Canceling...' : 'Confirm Cancel'}

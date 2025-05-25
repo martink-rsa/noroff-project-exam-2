@@ -13,6 +13,7 @@ import {
   parseISO,
   isSameDay
 } from 'date-fns';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Booking } from '../types';
 
 interface CalendarProps {
@@ -73,32 +74,32 @@ export function Calendar({
   };
 
   return (
-    <div className={`bg-white border border-gray-200 rounded-lg p-4 ${className}`}>
+    <div className={`bg-white/80 backdrop-blur-lg border border-white/20 rounded-3xl p-6 shadow-soft ${className}`}>
       {/* Calendar Header */}
       <div className="flex items-center justify-between mb-4">
         <button
           onClick={previousMonth}
-          className="p-2 hover:bg-gray-100 rounded-md"
+          className="p-2 hover:bg-primary-50 rounded-xl transition-colors duration-200"
           aria-label="Previous month"
         >
-          ←
+          <ChevronLeft size={20} className="text-primary-600" />
         </button>
-        <h3 className="text-lg font-semibold text-gray-900">
+        <h3 className="text-lg font-semibold text-neutral-800">
           {format(currentMonth, 'MMMM yyyy')}
         </h3>
         <button
           onClick={nextMonth}
-          className="p-2 hover:bg-gray-100 rounded-md"
+          className="p-2 hover:bg-primary-50 rounded-xl transition-colors duration-200"
           aria-label="Next month"
         >
-          →
+          <ChevronRight size={20} className="text-primary-600" />
         </button>
       </div>
 
       {/* Days of week */}
       <div className="grid grid-cols-7 gap-1 mb-2">
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-          <div key={day} className="p-2 text-center text-sm font-medium text-gray-500">
+          <div key={day} className="p-2 text-center text-sm font-medium text-neutral-500">
             {day}
           </div>
         ))}
@@ -119,14 +120,14 @@ export function Calendar({
               onClick={() => handleDateClick(day)}
               disabled={disabled}
               className={`
-                p-2 text-sm rounded-md transition-colors
-                ${!isSameMonth(day, currentMonth) ? 'text-gray-300' : ''}
-                ${today ? 'ring-2 ring-blue-500' : ''}
-                ${selected ? 'bg-blue-600 text-white' : ''}
-                ${inRange && !selected ? 'bg-blue-100 text-blue-900' : ''}
-                ${booked ? 'bg-red-100 text-red-500 cursor-not-allowed' : ''}
-                ${disabled && !booked ? 'text-gray-300 cursor-not-allowed' : ''}
-                ${!disabled && !selected && !inRange && !booked ? 'hover:bg-gray-100' : ''}
+                p-2 text-sm rounded-xl transition-colors duration-200
+                ${!isSameMonth(day, currentMonth) ? 'text-neutral-300' : ''}
+                ${today ? 'ring-2 ring-primary-400' : ''}
+                ${selected ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-neutral-900' : ''}
+                ${inRange && !selected ? 'bg-primary-100 text-primary-800' : ''}
+                ${booked ? 'bg-error-100 text-error-600 cursor-not-allowed' : ''}
+                ${disabled && !booked ? 'text-neutral-300 cursor-not-allowed' : ''}
+                ${!disabled && !selected && !inRange && !booked ? 'hover:bg-primary-50 text-neutral-700' : ''}
               `}
             >
               {format(day, 'd')}
@@ -136,17 +137,17 @@ export function Calendar({
       </div>
 
       {/* Legend */}
-      <div className="mt-4 flex flex-wrap gap-4 text-xs text-gray-600">
+      <div className="mt-6 flex flex-wrap gap-4 text-xs text-neutral-600">
         <div className="flex items-center">
-          <div className="w-3 h-3 bg-blue-600 rounded mr-2"></div>
+          <div className="w-3 h-3 bg-gradient-to-r from-primary-500 to-secondary-500 rounded mr-2"></div>
           Selected
         </div>
         <div className="flex items-center">
-          <div className="w-3 h-3 bg-blue-100 rounded mr-2"></div>
+          <div className="w-3 h-3 bg-primary-100 rounded mr-2"></div>
           Range
         </div>
         <div className="flex items-center">
-          <div className="w-3 h-3 bg-red-100 rounded mr-2"></div>
+          <div className="w-3 h-3 bg-error-100 rounded mr-2"></div>
           Booked
         </div>
         <div className="flex items-center">

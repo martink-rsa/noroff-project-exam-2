@@ -73,7 +73,7 @@ export function Header() {
                     />
                   ) : (
                     <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center">
-                      <User size={16} className="text-white" />
+                      <User size={16} className="text-neutral-900" />
                     </div>
                   )}
                   <div className="flex flex-col">
@@ -108,7 +108,7 @@ export function Header() {
                 </Link>
                 <Link
                   to="/register"
-                  className="flex items-center gap-2 bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 shadow-soft"
+                  className="flex items-center gap-2 bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-neutral-900 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 shadow-soft"
                 >
                   <UserCheck size={16} />
                   Sign up
@@ -183,7 +183,7 @@ export function Header() {
                       />
                     ) : (
                       <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center">
-                        <User size={18} className="text-white" />
+                        <User size={18} className="text-neutral-900" />
                       </div>
                     )}
                     <div className="flex flex-col">
@@ -220,7 +220,7 @@ export function Header() {
                   <Link
                     to="/register"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-3 bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-3 py-3 rounded-xl text-base font-medium transition-all duration-200 shadow-soft"
+                    className="flex items-center gap-3 bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-neutral-900 px-3 py-3 rounded-xl text-base font-medium transition-all duration-200 shadow-soft"
                   >
                     <UserCheck size={18} />
                     Sign up

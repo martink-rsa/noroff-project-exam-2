@@ -101,7 +101,7 @@ export default function VenueCard({ venue }: VenueCardProps) {
           
           <Link
             to={`/venues/${venue.id}`}
-            className="flex items-center gap-2 bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 shadow-soft hover:shadow-soft-lg focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 group"
+            className="flex items-center gap-2 bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-neutral-900 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 shadow-soft hover:shadow-soft-lg focus:ring-2 focus:ring-primary-300 focus:ring-offset-2 group"
             aria-describedby={`venue-${venue.id}-title`}
           >
             <Eye size={16} className="group-hover:scale-110 transition-transform duration-200" />

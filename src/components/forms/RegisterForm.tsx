@@ -48,7 +48,7 @@ export function RegisterForm() {
     <div className="max-w-md w-full space-y-8">
       <div className="text-center">
         <div className="mx-auto w-16 h-16 bg-gradient-to-br from-secondary-400 to-accent-400 rounded-2xl flex items-center justify-center mb-4">
-          <UserCheck size={28} className="text-white" />
+          <UserCheck size={28} className="text-neutral-900" />
         </div>
         <h2 className="text-3xl font-bold bg-gradient-to-r from-secondary-700 to-accent-700 bg-clip-text text-transparent">
           Join Holidaze
@@ -230,7 +230,7 @@ export function RegisterForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="group relative w-full flex justify-center items-center gap-2 py-3.5 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-secondary-500 to-accent-500 hover:from-secondary-600 hover:to-accent-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-soft hover:shadow-soft-lg"
+            className="group relative w-full flex justify-center items-center gap-2 py-3.5 px-4 border border-transparent text-sm font-medium rounded-xl text-neutral-900 bg-gradient-to-r from-secondary-500 to-accent-500 hover:from-secondary-600 hover:to-accent-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-soft hover:shadow-soft-lg"
           >
             {isSubmitting ? (
               <>

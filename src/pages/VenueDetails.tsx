@@ -68,7 +68,7 @@ export default function VenueDetails() {
           <div className="text-center">
             <Link
               to="/venues"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-soft hover:shadow-soft-lg"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-neutral-900 px-6 py-3 rounded-xl font-medium transition-all duration-200 shadow-soft hover:shadow-soft-lg"
             >
               <Building2 size={20} />
               Browse All Venues
@@ -274,7 +274,7 @@ export default function VenueDetails() {
                     />
                   ) : (
                     <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-400 to-secondary-400 flex items-center justify-center shadow-soft">
-                      <User size={24} className="text-white" />
+                      <User size={24} className="text-neutral-900" />
                     </div>
                   )}
                   <div>

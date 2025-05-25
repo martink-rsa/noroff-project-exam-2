@@ -343,7 +343,7 @@ export default function CreateVenue() {
             <button
               type="submit"
               disabled={loading}
-              className="px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-2xl hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-soft hover:shadow-soft-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:transform-none"
+              className="px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-neutral-900 rounded-2xl hover:from-primary-600 hover:to-primary-700 transition-all duration-300 shadow-soft hover:shadow-soft-lg transform hover:-translate-y-0.5 disabled:opacity-50 disabled:transform-none"
             >
               <div className="flex items-center justify-center gap-2">
                 {loading && <LoadingSpinner size="small" />}
